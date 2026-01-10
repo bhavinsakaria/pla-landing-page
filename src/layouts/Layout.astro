@@ -1,0 +1,316 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Pharma Links Agencies - Leading Pharmaceutical Distributor" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} | Pharma Links Agencies</title>
+	</head>
+	<body x-data="{ mobileMenuOpen: false, scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 20)">
+		
+    <!-- Sticky Header -->
+    <header :class="{ 'glass shadow-sm': scrolled, 'bg-white': !scrolled }" class="fixed-header">
+      <div class="container header-content">
+        <!-- Logo -->
+        <a href="/" class="logo">
+           <img src="/logo.png" alt="Pharma Links Agencies Logo" class="logo-img">
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+          <ul class="nav-links">
+            <li><a href="/" class={Astro.url.pathname === '/' ? 'active' : ''}>HOME</a></li>
+            <li><a href="/about" class={Astro.url.pathname === '/about' ? 'active' : ''}>ABOUT US</a></li>
+            <li><a href="/career" class={Astro.url.pathname === '/career' ? 'active' : ''}>CAREER</a></li>
+            <li><a href="/brands" class={Astro.url.pathname === '/brands' ? 'active' : ''}>BRAND</a></li>
+            <li><a href="/contact" class={Astro.url.pathname === '/contact' ? 'active' : ''}>CONTACT US</a></li>
+          </ul>
+        </nav>
+
+        <!-- Right Action Area -->
+        <div class="header-actions">
+           <div class="contact-box hidden-mobile">
+             <div class="contact-line">Helpline: <strong>080-6960 9999</strong></div>
+           </div>
+           <a href="https://pharmalinks.co.in/" target="_blank" class="btn btn-buy">BUY ONLINE</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="mobile-toggle" @click="mobileMenuOpen = !mobileMenuOpen" aria-label="Toggle Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation Overlay -->
+      <nav class="mobile-nav" x-show="mobileMenuOpen" x-transition.opacity @click.away="mobileMenuOpen = false" style="display: none;">
+        <div class="mobile-nav-content">
+          <button class="close-menu" @click="mobileMenuOpen = false">&times;</button>
+          <ul class="mobile-nav-links">
+            <li><a href="/">HOME</a></li>
+            <li><a href="/about">ABOUT US</a></li>
+            <li><a href="/career">CAREER</a></li>
+            <li><a href="/brands">BRAND</a></li>
+            <li><a href="/contact">CONTACT US</a></li>
+            <li class="mt-4"><a href="https://pharmalinks.co.in/" target="_blank" class="btn btn-buy w-full">BUY ONLINE</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+		<main>
+			<slot />
+		</main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-grid">
+         <div class="footer-block">
+            <h3>Pharma Links Agencies</h3>
+            <p>Your trusted partner in pharmaceutical distribution since 1990.</p>
+         </div>
+         <div class="footer-block">
+            <h3>Quick Links</h3>
+            <ul>
+               <li><a href="/">Home</a></li>
+               <li><a href="/about">About Us</a></li>
+               <li><a href="/brands">Brands</a></li>
+               <li><a href="/contact">Contact</a></li>
+            </ul>
+         </div>
+         <div class="footer-block">
+            <h3>Contact</h3>
+            <p>275 P Square, Albert Victor Road,<br>Chamarajpet, Bengaluru - 560018</p>
+            <p>Email: plabng@gmail.com</p>
+         </div>
+         <div class="footer-block">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+               <a href="#">LN</a>
+               <a href="#">FB</a>
+               <a href="#">TW</a>
+            </div>
+         </div>
+      </div>
+      <div class="footer-bottom">
+         <div class="container">
+            &copy; {new Date().getFullYear()} Pharma Links Agencies. All Rights Reserved.
+         </div>
+      </div>
+    </footer>
+	</body>
+</html>
+
+<style>
+  /* Header Styles */
+  .fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
+    transition: all 0.3s ease;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Always show subtle shadow */
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+  }
+
+  .logo-img {
+    height: 45px;
+    width: auto;
+  }
+
+  .desktop-nav .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #333;
+    position: relative;
+    padding: 0.5rem 0;
+  }
+  
+  .nav-links a.active, .nav-links a:hover {
+    color: var(--color-primary);
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: width 0.3s;
+  }
+  
+  .nav-links a:hover::after, .nav-links a.active::after {
+    width: 100%;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .contact-box {
+    text-align: right;
+    font-size: 0.85rem;
+  }
+
+  /* Mobile Nav */
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 1001;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .mobile-nav-content {
+    background: white;
+    width: 300px;
+    height: 100%;
+    padding: 2rem;
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  
+  .mobile-nav-links {
+    list-style: none;
+    margin-top: 3rem;
+  }
+  
+  .mobile-nav-links li {
+    margin-bottom: 1.5rem;
+  }
+  
+  .mobile-nav-links a {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    display: block;
+  }
+  
+  .close-menu {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  /* Main Content Padding for Fixed Header */
+  main {
+    padding-top: 80px;
+  }
+
+  /* Footer */
+  .footer {
+    background-color: #111;
+    color: #aaa;
+    padding: 4rem 0 0;
+  }
+  
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid #333;
+  }
+  
+  .footer-block h3 {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer-block ul {
+    list-style: none;
+  }
+  
+  .footer-block ul li {
+    margin-bottom: 0.8rem;
+  }
+  
+  .footer-block ul a:hover {
+    color: white;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .footer-bottom {
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 900px) {
+    .desktop-nav, .hidden-mobile {
+      display: none;
+    }
+    .mobile-toggle {
+      display: block;
+    }
+  }
+</style>

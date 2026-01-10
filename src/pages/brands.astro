@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Our Brands">
+  <section class="section">
+    <div class="container">
+      <div class="section-header text-center">
+        <h2>Our Partner Brands</h2>
+        <p class="section-sub">We distribute products from the world's leading pharmaceutical companies</p>
+      </div>
+
+      <div class="brand-grid">
+         {['Alembic', 'B-tex', 'Bentley', 'Biochem', 'Biocrross', 'Cadila', 'Cipla', 'Delux', 'Enkay', 'Glenmark', 'HMD', 'Hicks', 'Intas', 'JMS', 'Kremoint', 'Medifill', 'Microlabs', 'National', 'Omega', 'Saibol', 'Torrent', 'Wockhardt'].map((brand) => (
+          <div class="brand-card">
+            <div class="logo-box-img">
+              <img src={`/brands/${brand}.png`} alt={brand} loading="lazy" onError="this.style.display='none';this.nextElementSibling.style.display='flex'">
+               <div class="fallback-text" style="display:none">{brand[0]}</div>
+            </div>
+            <span class="name">{brand}</span>
+          </div>
+         ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .brand-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .brand-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: var(--radius-lg); /* Use global variable */
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .brand-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
+  }
+
+  .logo-box-img {
+    width: 100%;
+    height: 100px; /* Constraints image height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  
+  .logo-box-img img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s;
+  }
+  
+  .brand-card:hover img {
+    transform: scale(1.1);
+  }
+  
+  .fallback-text {
+     width: 80px; height: 80px; background: #eee; border-radius: 50%;
+     display: flex; align-items: center; justify-content: center; font-weight: bold; color: #aaa;
+     font-size: 2rem;
+  }
+
+  .name {
+    font-weight: 700;
+    color: #444;
+    font-size: 1.1rem;
+  }
+  
+  .section-sub {
+    color: #666;
+    margin-bottom: 2rem;
+  }
+</style>

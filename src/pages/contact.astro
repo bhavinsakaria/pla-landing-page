@@ -1,0 +1,219 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact Us">
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>GET IN TOUCH</h2>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Left Column: Info & Form -->
+        <div class="left-col">
+          
+          <!-- Contact Info Row -->
+          <div class="info-row">
+            <div class="info-block">
+              <h3>Contact Info</h3>
+              <div class="info-content">
+                <p><strong>PHARMA LINKS AGENCIES</strong><br>
+                275 P SQUARE, ALBERT VICTOR ROAD,<br>
+                1ST MAIN ROAD, CHAMARAJPET<br>
+                BENGALURU - 560018</p>
+                <div class="email-row">
+                  <span class="icon">✉️</span> <a href="mailto:plabng@gmail.com">plabng@gmail.com</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-block">
+              <h3>Call:</h3>
+              <div class="info-content">
+                <p class="phone-label"><span class="icon">📞</span> Call for More Details</p>
+                <div class="phone-numbers">
+                  <p><strong>Billing:</strong> 080-6960 9999 / 6960 9998</p>
+                  <p><strong>Dispatch:</strong> 080-6960 9940</p>
+                  <p><strong>Accounts:</strong> 080-6960 9951 / 6960 9952</p>
+                </div>
+              </div>
+            </div>
+            
+             <div class="info-block full-width">
+              <h3>WhatsApp:</h3>
+              <div class="info-content">
+                 <a href="https://wa.me/919999999999" class="whatsapp-link">
+                    <span class="icon success">💬</span> Whatsapp Chat
+                 </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="form-container">
+            <h3>Send us a message</h3>
+            <form class="contact-form" x-data="{ loading: false, submitted: false }" @submit.prevent="loading=true; setTimeout(()=>{loading=false; submitted=true}, 1000)">
+              <div class="form-row">
+                <input type="text" placeholder="Name" required class="form-input">
+                <input type="email" placeholder="Email" required class="form-input">
+                <input type="tel" placeholder="Contact" class="form-input">
+              </div>
+              <textarea placeholder="Message" rows="5" required class="form-input full"></textarea>
+              
+              <button type="submit" class="btn btn-primary" :disabled="loading">
+                <span x-show="!loading && !submitted">SEND MESSAGE</span>
+                <span x-show="loading">SENDING...</span>
+                <span x-show="submitted">SENT!</span>
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Map -->
+        <div class="right-col map-container">
+          <iframe 
+            src="https://maps.google.com/maps?q=12.9605578,77.5663287&z=16&output=embed" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Left col slightly wider or adjusted as per need, Map right */
+    gap: 3rem;
+  }
+
+  /* Info Section */
+  .info-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .info-block {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .info-block.full-width {
+    flex-basis: 100%;
+  }
+
+  .info-block h3 {
+    font-size: 1.1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  .info-content {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  .email-row {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+  }
+
+  .phone-numbers p {
+    margin-bottom: 0.25rem;
+  }
+
+  .whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #25D366; /* WhatsApp Green */
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  /* Form Section */
+  .form-container h3 {
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-input {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 2px; /* Square look */
+    background: #f9f9f9;
+    font-family: inherit;
+  }
+  
+  .form-input.full {
+    width: 100%;
+    resize: vertical;
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.8rem 2rem;
+    border: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    align-self: flex-start;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+     background-color: #005a9e;
+  }
+
+  /* Map Container */
+  .map-container {
+    min-height: 500px;
+    background: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .map-container {
+      min-height: 300px;
+      order: -1; /* Map on top for mobile? Or keep bottom */
+    }
+  }
+</style>
