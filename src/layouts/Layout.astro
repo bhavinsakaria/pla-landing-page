@@ -25,7 +25,10 @@ const { title } = Astro.props;
       <div class="container header-content">
         <!-- Logo -->
         <a href="/" class="logo">
-           <img src="/logo.png" alt="Pharma Links Agencies Logo" class="logo-img">
+           <div class="logo-wrapper">
+             <img src="/logo.png" alt="Pharma Links Agencies Logo" class="logo-img">
+             <span class="logo-badge">Since 1991</span>
+           </div>
         </a>
 
         <!-- Desktop Navigation -->
@@ -44,7 +47,7 @@ const { title } = Astro.props;
            <div class="contact-box hidden-mobile">
              <div class="contact-line">Helpline: <strong>080-6960 9999</strong></div>
            </div>
-           <a href="https://pharmalinks.co.in/" target="_blank" class="btn btn-buy">BUY ONLINE</a>
+           <a href="https://pharmalinks.co.in/" target="_blank" class="btn btn-buy hidden-mobile">BUY NOW</a>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -67,7 +70,7 @@ const { title } = Astro.props;
             <li><a href="/career">CAREER</a></li>
             <li><a href="/brands">BRAND</a></li>
             <li><a href="/contact">CONTACT US</a></li>
-            <li class="mt-4"><a href="https://pharmalinks.co.in/" target="_blank" class="btn btn-buy w-full">BUY ONLINE</a></li>
+            <li class="mt-4"><a href="https://pharmalinks.co.in/" target="_blank" class="btn btn-buy w-full">BUY NOW</a></li>
           </ul>
         </div>
       </nav>
@@ -83,7 +86,7 @@ const { title } = Astro.props;
       <div class="container footer-grid">
          <div class="footer-block">
             <h3>Pharma Links Agencies</h3>
-            <p>Your trusted partner in pharmaceutical distribution since 1990.</p>
+            <p>Your trusted partner in pharmaceutical distribution since 1991.</p>
          </div>
          <div class="footer-block">
             <h3>Quick Links</h3>
@@ -147,9 +150,28 @@ const { title } = Astro.props;
     text-decoration: none;
   }
 
+  .logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1;
+  }
+
   .logo-img {
-    height: 45px;
+    height: 38px;
     width: auto;
+    margin-bottom: 2px;
+  }
+  
+  .logo-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    background: rgba(230, 57, 70, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
 
   .desktop-nav .nav-links {

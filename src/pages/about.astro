@@ -2,10 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 
 const directors = [
-  { name: 'Praveen Sanghvi', title: 'Director' },
-  { name: 'Prakash Sanghvi', title: 'Director' },
-  { name: 'Deepak Sanghvi', title: 'Director' },
-  { name: 'Bhavin Sanghvi', title: 'Director' },
+  { name: 'Praveen Sanghvi', title: 'Director', linkedin: 'https://www.linkedin.com/in/praveen-sanghvi' },
+  { name: 'Prakash Sanghvi', title: 'Director', linkedin: 'https://www.linkedin.com/in/prakash-sanghvi' },
+  { name: 'Deepak Sanghvi', title: 'Director', linkedin: 'https://www.linkedin.com/in/deepak-sanghvi' },
+  { name: 'Bhavin Sanghvi', title: 'Director', linkedin: 'https://www.linkedin.com/in/bhavin-sakaria' },
 ];
 ---
 
@@ -19,7 +19,7 @@ const directors = [
 
       <div class="who-we-are-grid">
         <div class="text-content">
-          <p class="mb-4">Pharma links agencies was established in the year 1990. We started small with an aim of distributing wide-range of generics and branded formulations of medicines that are readily available across India. We have been providing service for over 3 decades now with more than 30 brands. We have an office and warehouse with an area of 25000 sq ft. which is situated/located in the heart of the city Bangalore</p>
+          <p class="mb-4">Pharma links agencies was established in the year 1991. We started small with an aim of distributing wide-range of generics and branded formulations of medicines that are readily available across India. We have been providing service for over 3 decades now with more than 30 brands. We have an office and warehouse with an area of 25000 sq ft. which is situated/located in the heart of the city Bangalore</p>
 
           <p class="mb-2"><strong>MISSION:</strong><br>
           Company is oriented and believes in quality and timely supply of medicines at a best price.</p>
@@ -42,18 +42,21 @@ const directors = [
 
       <div class="team-grid">
         {directors.map(director => (
-          <div class="team-card">
-            <div class="team-info">
-              <h3>{director.name} - {director.title}</h3>
-            </div>
-            <div class="team-social">
-              <span>SOCIAL NETWORK</span>
-              <a href="#" class="social-icon" aria-label="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-              </a>
-            </div>
+          <div class="team-card-modern">
+             <div class="avatar-placeholder">
+                {director.name.charAt(0)}
+             </div>
+             <div class="card-content">
+                <h3>{director.name}</h3>
+                <span class="role-badge">{director.title}</span>
+                {director.linkedin && (
+                  <a href={director.linkedin} target="_blank" class="linkedin-link" aria-label="LinkedIn Profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="var(--color-primary)">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                  </a>
+                )}
+             </div>
           </div>
         ))}
       </div>
@@ -67,8 +70,8 @@ const directors = [
         <h2>GALLERY</h2>
       </div>
       
-      <div class="gallery-wrapper" x-data="{ 
-           activeSlide: 0, 
+      <div class="gallery-wrapper-modern" x-data="{ 
+           current: 0, 
            slides: [
              '/gallary/Award1.jpg', 
              '/gallary/Award3.jpg', 
@@ -78,29 +81,27 @@ const directors = [
              '/gallary/Rack1.jpg', 
              '/gallary/Rack2.jpg', 
              '/gallary/Rack3.jpg'
-           ] 
+           ],
+           get total() { return this.slides.length },
+           get maxIndex() { return window.innerWidth < 768 ? this.total - 1 : this.total - 3 },
+           next() { this.current = this.current >= this.maxIndex ? 0 : this.current + 1 },
+           prev() { this.current = this.current <= 0 ? this.maxIndex : this.current - 1 },
+           init() { setInterval(() => this.next(), 3000) }
       }">
-         <div class="gallery-slider">
-             <template x-for="(slide, index) in slides" :key="index">
-                <div class="gallery-slide" x-show="activeSlide === index" x-transition.opacity.duration.500ms>
-                   <img :src="slide" alt="Gallery Image" class="gallery-img">
-                </div>
-             </template>
+         <div class="gallery-window">
+            <div class="gallery-track" :style="`transform: translateX(-${current * (window.innerWidth < 768 ? 100 : 33.33)}%)`">
+                <template x-for="(slide, index) in slides" :key="index">
+                   <div class="gallery-item-modern">
+                      <div class="img-card">
+                        <img :src="slide" alt="Gallery Image" loading="lazy">
+                      </div>
+                   </div>
+                </template>
+            </div>
          </div>
          
-         <div class="slider-controls">
-            <button class="nav-btn prev" @click="activeSlide = activeSlide === 0 ? slides.length - 1 : activeSlide - 1">&lt;</button>
-            <button class="nav-btn next" @click="activeSlide = activeSlide === slides.length - 1 ? 0 : activeSlide + 1">&gt;</button>
-         </div>
-         
-         <!-- Thumbnails -->
-         <div class="gallery-thumbs">
-            <template x-for="(slide, index) in slides" :key="index">
-               <div class="thumb" :class="{'active': activeSlide === index}" @click="activeSlide = index">
-                  <img :src="slide" alt="thumb">
-               </div>
-            </template>
-         </div>
+         <button class="nav-btn-modern prev" @click="prev" aria-label="Previous Slide">&lt;</button>
+         <button class="nav-btn-modern next" @click="next" aria-label="Next Slide">&gt;</button>
       </div>
     </div>
   </section>
@@ -113,6 +114,15 @@ const directors = [
     gap: 3rem;
     align-items: start;
   }
+  
+  @media (max-width: 768px) {
+    .who-we-are-grid {
+      grid-template-columns: 1fr;
+    }
+    .who-we-are-grid .image-content {
+      order: -1; /* Image on top */
+    }
+  }
 
   .mb-4 { margin-bottom: 2rem; }
   .mb-2 { margin-bottom: 1rem; }
@@ -121,137 +131,203 @@ const directors = [
   .rounded { border-radius: 4px; }
   .shadow { box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
 
-  /* Team Section */
+  /* Modern Team Section */
   .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
   }
 
-  .team-card {
+  .team-card-modern {
+    background: white;
+    padding: 2.5rem 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-  }
-
-  .team-info {
-    background-color: var(--color-primary); 
-    color: white;
-    padding: 2.5rem 1rem;
-    text-align: center;
-    font-weight: 600;
-  }
-
-  .team-info h3 {
-    font-size: 1.1rem;
-    margin: 0;
-    color: white;
-  }
-
-  .team-social {
-    background-color: #333;
-    color: #888;
-    padding: 0.8rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #444;
-    font-size: 0.8rem;
+    gap: 1.5rem;
     position: relative;
+    overflow: hidden;
   }
   
-  .team-social::before {
+  .team-card-modern::before {
     content: '';
     position: absolute;
-    left: 20px;
-    top: -10px;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #333;
+    top: 0; left: 0; width: 100%; height: 4px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+  
+  .team-card-modern:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    border-color: transparent;
+  }
+  
+  .team-card-modern:hover::before {
+    transform: scaleX(1);
+  }
+  
+  .avatar-placeholder {
+    width: 80px; height: 80px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    box-shadow: inset 0 2px 4px rgba(255,255,255,0.8), 0 4px 8px rgba(0,0,0,0.05);
+  }
+  
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
 
-  .social-icon {
-    display: flex;
+  .card-content h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #222;
+  }
+  
+  .role-badge {
+    background: rgba(230, 57, 70, 0.1);
+    color: var(--color-primary);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .linkedin-link {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #555;
-    width: 30px;
-    height: 30px;
+    padding: 0.6rem;
     border-radius: 50%;
-    transition: background 0.2s;
+    transition: all 0.2s;
+    background: #f8f9fa;
+    margin-top: 1rem;
+    color: var(--color-primary);
   }
 
-  .social-icon:hover {
+  .linkedin-link:hover {
     background: var(--color-primary);
+    color: white;
+    transform: translateY(-2px);
+  }
+  
+  .linkedin-link svg {
+    fill: currentColor;
   }
 
-  /* Gallery Styles */
-  .gallery-wrapper {
+  /* Modern Gallery Styles */
+  .gallery-wrapper-modern {
     position: relative;
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0 3rem; /* Space for buttons */
   }
   
-  .gallery-slider {
-    position: relative;
-    height: 500px;
-    background: #f0f0f0;
-    border-radius: 8px;
+  .gallery-window {
     overflow: hidden;
-    margin-bottom: 1rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    padding: 1rem 0;
   }
   
-  .gallery-slide {
+  .gallery-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+  }
+  
+  .gallery-item-modern {
+    flex: 0 0 33.33%; /* 3 items per row */
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  
+  .img-card {
+    background: white;
+    padding: 0.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    height: 250px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #eee;
+  }
+  
+  .img-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+  
+  .img-card img {
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.5s ease;
   }
   
-  .gallery-img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+  .img-card:hover img {
+    transform: scale(1.05);
   }
   
-  .slider-controls .nav-btn {
+  .nav-btn-modern {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    font-size: 2rem;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     cursor: pointer;
-    padding: 1rem;
+    font-size: 1.2rem;
+    color: var(--color-primary);
+    display: flex; align-items: center; justify-content: center;
     z-index: 10;
-    transition: background 0.3s;
+    transition: all 0.2s;
   }
   
-  .nav-btn:hover { background: rgba(0,0,0,0.8); }
-  .prev { left: 0; border-radius: 0 5px 5px 0; }
-  .next { right: 0; border-radius: 5px 0 0 5px; }
-  
-  .gallery-thumbs {
-    display: flex;
-    gap: 0.5rem;
-    overflow-x: auto;
-    padding-bottom: 0.5rem;
-    scrollbar-width: thin;
+  .nav-btn-modern:hover {
+    background: var(--color-primary);
+    color: white;
   }
   
-  .thumb {
-    min-width: 80px;
-    height: 60px;
-    border: 2px solid transparent;
-    cursor: pointer;
-    border-radius: 4px;
-    overflow: hidden;
+  .nav-btn-modern.prev { left: 0; }
+  .nav-btn-modern.next { right: 0; }
+
+  @media (max-width: 768px) {
+    .gallery-item-modern {
+      flex: 0 0 100%; /* 1 item per row phone */
+    }
+    .img-card {
+       height: 300px;
+    }
+    .gallery-wrapper-modern {
+      padding: 0 1rem;
+    }
+    .nav-btn-modern {
+        width: 35px; height: 35px;
+    }
+    .nav-btn-modern.prev { left: -10px; }
+    .nav-btn-modern.next { right: -10px; }
   }
-  
-  .thumb.active { border-color: var(--color-primary); }
-  .thumb img { width: 100%; height: 100%; object-fit: cover; }
 
   @media (max-width: 768px) {
     .who-we-are-grid {
