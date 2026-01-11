@@ -10,21 +10,33 @@ const directors = [
 ---
 
 <Layout title="About Us">
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <div class="container about-hero-content">
+      <h1 class="about-title">About Pharma Links Agencies</h1>
+      <p class="about-subtitle">
+        Serving the pharmaceutical industry with excellence for over 30 years. Your trusted partner in healthcare distribution.
+      </p>
+    </div>
+  </section>
+
   <!-- Who Are We Section -->
   <section class="section">
     <div class="container">
-      <div class="section-header">
-        <h2>WHO ARE WE</h2>
-      </div>
-
       <div class="who-we-are-grid">
         <div class="text-content">
-          <p class="mb-4">Pharma links agencies was established in the year 1991. We started small with an aim of distributing wide-range of generics and branded formulations of medicines that are readily available across India. We have been providing service for over 3 decades now with more than 30 brands. We have an office and warehouse with an area of 25000 sq ft. which is situated/located in the heart of the city Bangalore</p>
+          <h2 class="section-title">Our Story Since 1991</h2>
+          <p class="mb-4">Pharma Links Agencies was established in 1991 with a simple mission: to distribute a wide range of generic and branded medicines across India. Over three decades, we've grown from a small operation into a trusted partner for over 400 stockists, 4,000 retailers, and 2,000 doctors and hospitals.</p>
 
-          <p class="mb-2"><strong>MISSION:</strong><br>
-          Company is oriented and believes in quality and timely supply of medicines at a best price.</p>
+          <div class="info-card">
+            <h3>🎯 Our Mission</h3>
+            <p>We are committed to providing quality, timely supply of medicines at the best prices, ensuring accessibility and affordability for all healthcare providers.</p>
+          </div>
 
-          <p><strong>STRENGTH:</strong> We are having a strong network in south India. We have nearly 400 stockists, 4000 retailers, 2000 doctors and hospitals. We have our own field people roaming in the market all the times to serve our customers and to guide them.</p>
+          <div class="info-card">
+            <h3>💪 Our Strength</h3>
+            <p>With a strong network across South India, our 25,000 sq ft office and warehouse in Bangalore serve as a hub for efficient distribution. Our dedicated field team continuously supports and guides our customers.</p>
+          </div>
         </div>
         <div class="image-content">
            <img src="/building.jpg" alt="Pharma Links Building" class="img-fluid rounded shadow">
@@ -34,10 +46,11 @@ const directors = [
   </section>
 
   <!-- Our Team Section -->
-  <section class="section section-bg">
+  <section class="section team-section">
     <div class="container">
-      <div class="section-header">
-        <h2>OUR TEAM</h2>
+      <div class="team-header">
+        <h2 class="team-title">Our Leadership Team</h2>
+        <p class="team-subtitle">Meet the visionaries behind Pharma Links Agencies</p>
       </div>
 
       <div class="team-grid">
@@ -64,10 +77,11 @@ const directors = [
   </section>
 
   <!-- Gallery Section -->
-  <section class="section">
+  <section class="section gallery-section">
     <div class="container">
-      <div class="section-header text-center">
-        <h2>GALLERY</h2>
+      <div class="gallery-header">
+        <h2 class="gallery-title">Our Gallery</h2>
+        <p class="gallery-subtitle">A glimpse of our operations, achievements, and facilities</p>
       </div>
       
       <div class="gallery-wrapper-modern" x-data="{ 
@@ -108,30 +122,122 @@ const directors = [
 </Layout>
 
 <style>
-  .who-we-are-grid {
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    gap: 3rem;
-    align-items: start;
-  }
-  
-  @media (max-width: 768px) {
-    .who-we-are-grid {
-      grid-template-columns: 1fr;
-    }
-    .who-we-are-grid .image-content {
-      order: -1; /* Image on top */
-    }
+  /* About Hero Section */
+  .about-hero {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-bottom: 1px solid #e5e7eb;
+    padding: 3.5rem 0 1.5rem 0;
+    text-align: center;
   }
 
+  .about-hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .about-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+  }
+
+  .about-subtitle {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  /* Who We Are Section */
+  .who-we-are-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .text-content {
+    padding: 1rem 0;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.5px;
+  }
+
+  .text-content p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+  }
+
+  .info-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .info-card:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .info-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0.8rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.7;
+  }
+  
   .mb-4 { margin-bottom: 2rem; }
   .mb-2 { margin-bottom: 1rem; }
   
   .img-fluid { max-width: 100%; height: auto; }
-  .rounded { border-radius: 4px; }
-  .shadow { box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  .rounded { border-radius: 12px; }
+  .shadow { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12); }
 
-  /* Modern Team Section */
+  /* Team Section */
+  .team-section {
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+  }
+
+  .team-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .team-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+  }
+
+  .team-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 0;
+  }
+
   .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -143,21 +249,25 @@ const directors = [
     padding: 2.5rem 1.5rem;
     border-radius: 12px;
     text-align: center;
-    border: 1px solid #f0f0f0;
-    transition: all 0.3s ease;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   }
   
   .team-card-modern::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 4px;
-    background: var(--color-primary);
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 4px;
+    background: linear-gradient(90deg, #e63946, #a8202d);
     transform: scaleX(0);
     transition: transform 0.3s;
     transform-origin: left;
@@ -165,8 +275,8 @@ const directors = [
   
   .team-card-modern:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-    border-color: transparent;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    border-color: #d1d5db;
   }
   
   .team-card-modern:hover::before {
@@ -174,14 +284,17 @@ const directors = [
   }
   
   .avatar-placeholder {
-    width: 80px; height: 80px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    width: 100px; 
+    height: 100px;
+    background: linear-gradient(135deg, rgba(230, 57, 70, 0.15), rgba(168, 32, 45, 0.1));
     border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2rem;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-size: 2.5rem;
     font-weight: 800;
-    color: var(--color-primary);
-    box-shadow: inset 0 2px 4px rgba(255,255,255,0.8), 0 4px 8px rgba(0,0,0,0.05);
+    color: #e63946;
+    box-shadow: 0 6px 16px rgba(230, 57, 70, 0.15);
   }
   
   .card-content {
@@ -193,44 +306,70 @@ const directors = [
 
   .card-content h3 {
     margin: 0 0 0.5rem 0;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 700;
-    color: #222;
+    color: #111;
   }
   
   .role-badge {
     background: rgba(230, 57, 70, 0.1);
-    color: var(--color-primary);
-    padding: 0.4rem 1rem;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    font-weight: 600;
+    color: #e63946;
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     display: inline-block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
   }
 
   .linkedin-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.6rem;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
     background: #f8f9fa;
-    margin-top: 1rem;
-    color: var(--color-primary);
+    color: #e63946;
+    border: 1px solid #e5e7eb;
   }
 
   .linkedin-link:hover {
-    background: var(--color-primary);
+    background: #e63946;
     color: white;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(230, 57, 70, 0.3);
   }
   
   .linkedin-link svg {
     fill: currentColor;
+  }
+
+  /* Gallery Section */
+  .gallery-section {
+    background: white;
+  }
+
+  .gallery-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .gallery-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+  }
+
+  .gallery-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 0;
   }
 
   /* Modern Gallery Styles */
@@ -238,7 +377,7 @@ const directors = [
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 3rem; /* Space for buttons */
+    padding: 0 3rem;
   }
   
   .gallery-window {
@@ -254,7 +393,7 @@ const directors = [
   }
   
   .gallery-item-modern {
-    flex: 0 0 33.33%; /* 3 items per row */
+    flex: 0 0 33.33%;
     padding: 0 10px;
     box-sizing: border-box;
   }
@@ -263,16 +402,17 @@ const directors = [
     background: white;
     padding: 0.5rem;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     height: 250px;
     overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: 1px solid #eee;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #e5e7eb;
   }
   
   .img-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+    border-color: #d1d5db;
   }
   
   .img-card img {
@@ -284,55 +424,141 @@ const directors = [
   }
   
   .img-card:hover img {
-    transform: scale(1.05);
+    transform: scale(1.08);
   }
   
   .nav-btn-modern {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px; height: 40px;
+    width: 44px; 
+    height: 44px;
     border-radius: 50%;
     background: white;
-    border: 1px solid #eee;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    font-size: 1.2rem;
-    color: var(--color-primary);
-    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    color: #e63946;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
     z-index: 10;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
+    font-weight: 700;
   }
   
   .nav-btn-modern:hover {
-    background: var(--color-primary);
+    background: #e63946;
     color: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 8px 24px rgba(230, 57, 70, 0.3);
   }
   
   .nav-btn-modern.prev { left: 0; }
   .nav-btn-modern.next { right: 0; }
 
   @media (max-width: 768px) {
-    .gallery-item-modern {
-      flex: 0 0 100%; /* 1 item per row phone */
+    .about-title {
+      font-size: 2.5rem;
     }
+
+    .about-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .who-we-are-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+    }
+
+    .team-title {
+      font-size: 1.8rem;
+    }
+
+    .gallery-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .gallery-item-modern {
+      flex: 0 0 100%;
+    }
+
     .img-card {
        height: 300px;
+       border-radius: 12px;
     }
+
     .gallery-wrapper-modern {
       padding: 0 1rem;
     }
+
     .nav-btn-modern {
-        width: 35px; height: 35px;
+        width: 40px; 
+        height: 40px;
+        font-size: 1.1rem;
+        border-radius: 6px;
     }
-    .nav-btn-modern.prev { left: -10px; }
-    .nav-btn-modern.next { right: -10px; }
+
+    .nav-btn-modern.prev { left: 5px; }
+    .nav-btn-modern.next { right: 5px; }
+
+    .team-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .team-card-modern {
+      padding: 1.8rem 1.2rem;
+    }
+
+    .avatar-placeholder {
+      width: 80px;
+      height: 80px;
+      font-size: 2rem;
+    }
+
+    .team-card-modern h4 {
+      font-size: 1rem;
+    }
+
+    .team-card-modern p {
+      font-size: 0.85rem;
+    }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
+    .about-hero {
+      padding: 2.5rem 0 1rem 0;
+    }
+
+    .about-title {
+      font-size: 2rem;
+    }
+
+    .about-subtitle {
+      font-size: 1rem;
+    }
+
     .who-we-are-grid {
       grid-template-columns: 1fr;
+      gap: 2rem;
     }
-    .gallery-slider { height: 300px; }
+
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .gallery-wrapper-modern {
+      height: 250px;
+    }
+
+    .img-card {
+      height: 250px;
+    }
   }
 </style>

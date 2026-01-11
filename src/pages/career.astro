@@ -11,19 +11,22 @@ const jobOpenings = [
 ---
 
 <Layout title="Career">
-  <section class="section section-bg">
-    <div class="container">
-      <div class="section-header">
-        <h2>CAREER</h2>
-      </div>
+  <section class="career-hero">
+    <div class="container career-hero-content">
+      <h1 class="career-title">Join Our Team</h1>
+      <p class="career-subtitle">
+        Shape the future of pharmaceutical distribution. We're looking for talented individuals to grow with us.
+      </p>
+    </div>
+  </section>
 
+  <section class="section">
+    <div class="container">
       <div class="career-wrapper">
         <!-- Content Header -->
-        <div class="career-intro text-center">
-          <h1 class="mb-4">Work @ Pharma Links Agencies</h1>
+        <div class="career-intro">
           <p class="lead-text">
-            Career opportunities at Pharma Links Agencies in various domains like sales and marketing, accounting, clerks, and administration. 
-            We are always looking for talented individuals to join our growing team.
+            At Pharma Links Agencies, we believe our people are our greatest asset. We offer exciting career opportunities across sales & marketing, accounting, administration, and logistics. Join us and be part of a team that's revolutionizing pharmaceutical distribution since 1991.
           </p>
         </div>
 
@@ -34,18 +37,36 @@ const jobOpenings = [
               <div class="job-icon">{job.icon}</div>
               <h3 class="job-title">{job.title}</h3>
               <p class="job-status">Open Position</p>
+              <a href="mailto:plabng@gmail.com" class="job-apply-link">Apply Now →</a>
             </div>
           ))}
         </div>
 
         <!-- Call to Action -->
         <div class="cta-box mt-5">
-          <h3>Ready to Join Us?</h3>
-          <p>Come be part of our team! Write to us with your resume at:</p>
-          <a href="mailto:plabng@gmail.com" class="email-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            plabng@gmail.com
-          </a>
+          <div class="cta-content">
+            <h2>Ready to Join Our Journey?</h2>
+            <p>Send us your resume and let's start a conversation about your future with Pharma Links Agencies.</p>
+            <a href="mailto:plabng@gmail.com" class="btn btn-primary btn-lg">
+              Get In Touch
+            </a>
+          </div>
+          <div class="cta-info">
+            <div class="info-item">
+              <span class="info-icon">📧</span>
+              <div>
+                <h4>Email</h4>
+                <p>plabng@gmail.com</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">📍</span>
+              <div>
+                <h4>Location</h4>
+                <p>Chamarajpet, Bengaluru</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -54,104 +75,293 @@ const jobOpenings = [
 </Layout>
 
 <style>
-  .career-wrapper {
-    max-width: 900px;
+  /* Career Hero Section */
+  .career-hero {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-bottom: 1px solid #e5e7eb;
+    padding: 3.5rem 0 1.5rem 0;
+    text-align: center;
+  }
+
+  .career-hero-content {
+    max-width: 800px;
     margin: 0 auto;
   }
 
-  .text-center { text-align: center; }
-  .mb-4 { margin-bottom: 1.5rem; }
-  .mt-5 { margin-top: 3rem; }
+  .career-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+  }
+
+  .career-subtitle {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .career-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .text-center { 
+    text-align: center; 
+  }
+
+  .mb-4 { 
+    margin-bottom: 1.5rem; 
+  }
+
+  .mt-5 { 
+    margin-top: 2rem; 
+  }
 
   .lead-text {
     font-size: 1.1rem;
-    color: #555;
+    color: #666;
     line-height: 1.8;
-    max-width: 700px;
+    max-width: 800px;
     margin: 0 auto;
+    padding: 0 1rem;
   }
 
   /* Jobs Grid */
   .jobs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
   }
 
   .job-card {
     background: white;
-    padding: 2rem;
-    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
     text-align: center;
-    border: 1px solid var(--color-border);
-    border-bottom: 4px solid var(--color-primary);
-    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .job-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #e63946, #a8202d);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .job-card:hover::before {
+    transform: scaleX(1);
   }
 
   .job-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    border-color: #d1d5db;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-6px);
   }
 
   .job-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
   }
 
   .job-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #333;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: #111;
   }
 
   .job-status {
-    font-size: 0.85rem;
-    color: var(--color-secondary);
-    font-weight: 500;
+    font-size: 0.75rem;
+    color: #e63946;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    background: rgba(237, 28, 36, 0.05); /* Light red bg */
+    letter-spacing: 1.5px;
+    background: rgba(230, 57, 70, 0.1);
     display: inline-block;
-    padding: 2px 8px;
-    border-radius: 4px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+
+  .job-apply-link {
+    color: #e63946;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    margin-top: auto;
+  }
+
+  .job-apply-link:hover {
+    transform: translateX(4px);
   }
 
   /* CTA Box */
   .cta-box {
-    background-color: white;
-    border: 1px solid #e0e0e0;
-    padding: 3rem;
-    border-radius: 8px;
+    background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+    padding: 3.5rem;
+    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    color: white;
   }
 
-  .cta-box h3 {
+  .cta-content {
+    margin-bottom: 2.5rem;
+  }
+
+  .cta-box h2 {
+    font-size: 2.2rem;
     margin-bottom: 1rem;
-    color: var(--color-primary);
+    color: white;
   }
 
-  .email-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--color-secondary);
+  .cta-box > p {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  
-  .email-link:hover {
-    text-decoration: underline;
+
+  .cta-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .info-icon {
+    font-size: 2.5rem;
+    display: block;
+  }
+
+  .info-item h4 {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .info-item p {
+    color: #aaa;
+    font-size: 0.95rem;
+  }
+
+  .btn-lg {
+    padding: 1rem 2.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 6px;
   }
 
   @media (max-width: 768px) {
+    .career-title {
+      font-size: 2.5rem;
+    }
+
+    .career-subtitle {
+      font-size: 1.1rem;
+    }
+
     .jobs-grid {
       grid-template-columns: 1fr;
+      gap: 1.5rem;
     }
+
+    .job-card {
+      padding: 2rem 1.5rem;
+    }
+
+    .job-card h3 {
+      font-size: 1.1rem;
+    }
+
     .cta-box {
-      padding: 1.5rem;
+      padding: 2.5rem 1.5rem;
+      border-radius: 12px;
+    }
+
+    .cta-box h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-box > p {
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-info {
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+    }
+
+    .cta-info .info-item {
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    .info-icon {
+      font-size: 1.5rem;
+    }
+
+    .lead-text {
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .career-hero {
+      padding: 2.5rem 0 1rem 0;
+    }
+
+    .career-title {
+      font-size: 2rem;
+    }
+
+    .jobs-grid {
+      gap: 1.2rem;
+    }
+
+    .job-card {
+      padding: 1.5rem 1.2rem;
+    }
+
+    .cta-box {
+      padding: 2rem 1.2rem;
+    }
+
+    .cta-box h2 {
+      font-size: 1.3rem;
     }
   }
 </style>
