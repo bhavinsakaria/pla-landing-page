@@ -11,6 +11,9 @@ const REVEAL_SELECTORS = [
   '.who-we-are-grid > *',
   '.team-header',
   '.gallery-section .gallery-item',
+  '.big-numbers .cell',
+  '.trust-strip-row > *',
+  '.final-cta-inner > *',
   '[data-motion="reveal"]',
 ].join(', ');
 
@@ -22,10 +25,12 @@ function init() {
   });
 
   const heroTargets = [
+    '.hero-eyebrow',
     '.hero-title',
     '.hero-subtitle',
     '.hero-desc',
     '.hero-cta-group',
+    '.micro-trust',
   ]
     .map((s) => document.querySelector<HTMLElement>(s))
     .filter((el): el is HTMLElement => Boolean(el));
