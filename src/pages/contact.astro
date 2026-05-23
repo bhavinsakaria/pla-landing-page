@@ -61,19 +61,49 @@ import Layout from '../layouts/Layout.astro';
           <!-- Contact Form -->
           <div class="form-container">
             <h3>Send us a message</h3>
-            <form class="contact-form" x-data="{ loading: false, submitted: false }" @submit.prevent="loading=true; setTimeout(()=>{loading=false; submitted=true}, 1000)">
+            <form
+              class="contact-form"
+              x-data="{ loading: false, submitted: false, error: '' }"
+              @submit.prevent="
+                loading = true;
+                error = '';
+                const formData = new FormData($event.target);
+                fetch('https://api.web3forms.com/submit', {
+                  method: 'POST',
+                  body: formData
+                })
+                .then(async (res) => {
+                  const data = await res.json();
+                  if (data.success) {
+                    submitted = true;
+                    $event.target.reset();
+                  } else {
+                    error = data.message || 'Something went wrong. Please try again.';
+                  }
+                })
+                .catch(() => { error = 'Network error. Please try again.'; })
+                .finally(() => { loading = false; });
+              "
+            >
+              <input type="hidden" name="access_key" value="c24288e7-ced1-4a22-b741-83705f6518b9">
+              <input type="hidden" name="subject" value="New contact form submission - Pharma Links Agencies">
+              <input type="hidden" name="from_name" value="PLA Website">
+              <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
               <div class="form-row">
-                <input type="text" placeholder="Your Name" required class="form-input">
-                <input type="email" placeholder="Your Email" required class="form-input">
-                <input type="tel" placeholder="Phone (Optional)" class="form-input">
+                <input type="text" name="name" placeholder="Your Name" required class="form-input">
+                <input type="email" name="email" placeholder="Your Email" required class="form-input">
+                <input type="tel" name="phone" placeholder="Phone (Optional)" class="form-input">
               </div>
-              <textarea placeholder="Tell us what's on your mind..." rows="5" required class="form-input full"></textarea>
-              
+              <textarea name="message" placeholder="Tell us what's on your mind..." rows="5" required class="form-input full"></textarea>
+
               <button type="submit" class="btn btn-primary btn-lg" :disabled="loading">
                 <span x-show="!loading && !submitted">SEND MESSAGE</span>
                 <span x-show="loading">SENDING...</span>
                 <span x-show="submitted" class="success">✓ SENT!</span>
               </button>
+
+              <p class="form-error" x-show="error" x-text="error"></p>
             </form>
           </div>
 
@@ -238,6 +268,12 @@ import Layout from '../layouts/Layout.astro';
     width: 100%;
     resize: vertical;
     min-height: 120px;
+  }
+
+  .form-error {
+    color: #e63946;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
   }
 
   .btn-lg {
