@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Emitted as dist/404.html. Its presence stops Cloudflare Pages from treating the
+// site as an SPA (serving index.html with 200 for unknown paths); unmatched URLs
+// such as /autodiscover/autodiscover.xml now get this page with a real 404 status.
+---
+
+<Layout title="Page Not Found">
+  <section class="section not-found">
+    <div class="container">
+      <h1>Page not found</h1>
+      <p>The page you are looking for doesn't exist or has been moved.</p>
+      <a href="/" class="btn btn-primary">Back to Home</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .not-found {
+    text-align: center;
+    padding: 8rem 0 6rem;
+  }
+
+  .not-found h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .not-found p {
+    color: #555;
+    margin-bottom: 2rem;
+  }
+</style>
